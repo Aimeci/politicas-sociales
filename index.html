@@ -1255,7 +1255,13 @@
     setMenuIcon(isOpen);
     menuBtn.setAttribute('aria-expanded',String(isOpen));
   }
-  menuBtn.addEventListener('click', toggleMenu);
+  // Detiene la propagación porque setMenuIcon reemplaza el SVG pulsado.
+  // Sin esto, el listener global interpreta el clic como externo y cierra
+  // inmediatamente el menú cuando se pulsa directamente sobre las líneas.
+  menuBtn.addEventListener('click', (event)=>{
+    event.stopPropagation();
+    toggleMenu();
+  });
   menuDropdown.addEventListener('click', (e)=>{
     const item = e.target.closest('.menu-item');
     if(!item) return;
