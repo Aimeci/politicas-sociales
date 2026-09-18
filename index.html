@@ -617,6 +617,35 @@ img,svg{max-width:100%}
   .operatoria-node{width:108px!important;font-size:11px!important}
 }
 </style>
+
+<style id="mobile-overlap-fix">
+/* Corrección móvil: las animaciones de entrada no deben conservar el desplazamiento
+   una vez que el bloque entra en pantalla. Esto evitaba superposiciones en Faleiros, Cena, etc. */
+@media (max-width:780px){
+  .scroll-reveal, .scroll-reveal.from-right{
+    transform:translateY(18px)!important;
+    opacity:0;
+  }
+  .scroll-reveal.in-view, .scroll-reveal.from-right.in-view{
+    transform:none!important;
+    opacity:1!important;
+  }
+  .card, .pill, .quote, .world-viz, .world-infographics, .grid2, .grid4{
+    min-width:0;
+    max-width:100%;
+  }
+  .card{overflow-x:visible!important;}
+  .grid2{align-items:stretch;}
+  .grid2 > *{position:relative;inset:auto!important;height:auto!important;min-height:0;}
+  .pill{height:auto!important;margin-bottom:0;}
+  .quote{height:auto!important;overflow:visible!important;word-break:normal;overflow-wrap:anywhere;}
+  .quote cite{overflow-wrap:anywhere;}
+}
+@media (max-width:430px){
+  .scroll-reveal, .scroll-reveal.from-right{transform:translateY(14px)!important;}
+  .scroll-reveal.in-view, .scroll-reveal.from-right.in-view{transform:none!important;}
+}
+</style>
 </head>
 <body>
 
